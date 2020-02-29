@@ -1,8 +1,9 @@
 import React from 'react';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
+    <div className="note-content">
       <header className="App-header">
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
