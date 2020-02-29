@@ -1,0 +1,17 @@
+@import '../index.scss';
+
+.BSCCreateNote {
+  width: 200px;
+  height: 250px;
+  opacity: 71%;
+  &.MuiButton-root {
+    padding: 0;
+    font-size: 100px;
+    color: $base-color;
+    background-color: $white;
+    flex-wrap: wrap;
+  }
+  &.MuiButtonBase-root {
+    margin: 20px;
+  }
+}

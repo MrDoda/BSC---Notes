@@ -1,5 +1,15 @@
-$base-color: #c6538c;
+@import '../index.scss';
 
-.note-content {
-  background: $base-color;
+.BSC-header {
+  height: $header-height;
+  width: 100vw;
+  &.MuiPaper-rounded {
+    border-radius: unset;
+  }
+}
+
+.BSC-content {
+  display: flex;
+  /*margin-top: $header-height;*/
+  flex-wrap: wrap;
 }

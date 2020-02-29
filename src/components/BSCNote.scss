@@ -1,0 +1,15 @@
+.BSCNote {
+  width: 200px;
+  margin: 20px;
+  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  .MuiCardContent-root {
+    height: 100%;
+    margin-bottom: 15px;
+  }
+  .content-input {
+    height: 100%;
+  }
+}
