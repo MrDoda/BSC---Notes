@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button } from '@material-ui/core';
 import './BSCCreateNote.scss';
-import { createBscNoteAction } from '../actions/note.actions';
+import { createBscNoteAction } from '../../actions/note.actions';
 import { useDispatch } from 'react-redux';
 
 

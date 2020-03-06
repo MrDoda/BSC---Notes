@@ -1,8 +1,8 @@
-@import '../index.scss';
+@import '../../index';
 
 .BSCCreateNote {
-  width: 200px;
-  height: 250px;
+  width: $note-width;
+  height: $note-height;
   opacity: 71%;
   &.MuiButton-root {
     padding: 0;

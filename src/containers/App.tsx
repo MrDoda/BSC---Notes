@@ -3,12 +3,12 @@ import './App.scss';
 import { useSelector } from 'react-redux';
 import { getNotes } from '../reducers/notes.reducer';
 import { INote } from '../types/common.type';
-import BSCNote from '../components/BSCNote';
-import BSCCreateNote from '../components/BSCCreateNote';
+import BSCNote from '../components/BSCNote/BSCNote';
+import BSCCreateNote from '../components/BSCCreateNote/BSCCreateNote';
 import { LocalizeContextProps, withLocalize } from 'react-localize-redux';
 import globalTranslations from '../translations/global.json';
 import { renderToStaticMarkup } from 'react-dom/server';
-import LanguageToggle from '../components/LanguageToggle';
+import LanguageToggle from '../components/LanguageToggle/LanguageToggle';
 import { Paper } from '@material-ui/core';
 
 export interface IProps extends LocalizeContextProps {}

@@ -1,5 +1,8 @@
+@import '../../index';
+
 .BSCNote {
-  width: 200px;
+  width: $note-width;
+  height: $note-height;
   margin: 20px;
   overflow: auto;
   display: flex;

@@ -5,11 +5,12 @@
   width: 100vw;
   &.MuiPaper-rounded {
     border-radius: unset;
+    display: flex;
+    padding: 10px;
   }
 }
 
 .BSC-content {
   display: flex;
-  /*margin-top: $header-height;*/
   flex-wrap: wrap;
 }

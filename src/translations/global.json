@@ -1,5 +1,5 @@
 {
   "global": {
-    "delete": ["Delete", "Effacer", "Smazat"]
+    "delete": ["Delete", "Effacer", "Удалить"]
   }
 }
