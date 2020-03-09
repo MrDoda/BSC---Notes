@@ -1,5 +1,5 @@
-
 export interface INote {
-    headline: string;
-    content: string;
+  id: number;
+  headline: string;
+  content: string;
 }

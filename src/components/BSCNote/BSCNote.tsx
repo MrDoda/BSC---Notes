@@ -22,11 +22,20 @@ const BSCNote: React.FC<IProps> = ({ note, index }) => {
     dispatch(deleteBscNoteAction(index));
   };
 
+  const onNoteChange = (propertyName: string) => (e:any) => {};
+
   return (
     <Card className="BSCNote">
       <CardContent>
-        <TextField role="headline" className="headline-input" />
-        <InputBase role="content" className="content-input" multiline rowsMax={6} rows={6} />
+        <TextField onChange={onNoteChange('headline')} role="headline" className="headline-input" />
+        <InputBase
+          onChange={onNoteChange('content')}
+          role="content"
+          className="content-input"
+          multiline
+          rowsMax={6}
+          rows={6}
+        />
       </CardContent>
       <CardActions>
         <Button onClick={deleteNote} color="secondary" size="small">

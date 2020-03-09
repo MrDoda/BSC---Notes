@@ -1,8 +1,9 @@
 import { NOTE_CREATE, NOTE_DELETE } from '../reducers/notes.reducer';
+import {INote} from "../types/common.type";
 
 export interface INoteAction {
   type: string;
-  value?: string | number;
+  value?: string | number | INote;
 }
 
 export const createBscNoteAction: INoteAction = {
