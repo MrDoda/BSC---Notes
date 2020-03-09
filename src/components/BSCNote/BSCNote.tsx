@@ -19,7 +19,7 @@ const BSCNote: React.FC<IProps> = ({ note, index }) => {
   const dispatch = useDispatch();
 
   const deleteNote = () => {
-    dispatch(deleteBscNoteAction(index));
+    dispatch(deleteBscNoteAction(note, index));
   };
 
   const onNoteChange = (propertyName: string) => (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -2,7 +2,6 @@ import { INote } from '../types/common.type';
 import { IGlobalState } from '../store';
 import { INoteAction } from '../actions/note.actions';
 import * as R from 'ramda';
-import { createId } from '../helpers/helpers';
 
 export const NOTE_CREATE: string = 'NOTE_CREATE';
 export const NOTE_DELETE: string = 'NOTE_DELETE';
@@ -17,25 +16,18 @@ const initialState: INote[] = [];
 const notes = (state: INote[] = initialState, action: INoteAction) => {
   switch (action.type) {
     case NOTE_CREATE:
-      return R.append(
-        {
-          id: createId(state),
-          headline: '',
-          content: '',
-        },
-        state
-      );
+      return R.append(action.payload as INote, state);
 
     case NOTE_DELETE:
-      return R.remove(action.value as number, 1, state);
+      return R.remove((action.payload as { note: INote; index: number }).index, 1, state);
 
     case NOTE_UPDATE: {
-      const noteToBeUpdated: INote = action.value as INote;
+      const noteToBeUpdated: INote = action.payload as INote;
       return R.map(R.when(R.propEq('id', noteToBeUpdated.id), () => noteToBeUpdated))(state);
     }
 
     case NOTE_GET_NOTES:
-      return state;
+      return Array.isArray(action.payload) ? action.payload : state;
 
     default:
       return state;

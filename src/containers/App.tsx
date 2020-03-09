@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { EffectCallback, useEffect } from 'react';
 import './App.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getNotes } from '../reducers/notes.reducer';
 import { INote } from '../types/common.type';
 import BSCNote from '../components/BSCNote/BSCNote';
@@ -10,11 +10,27 @@ import globalTranslations from '../translations/global.json';
 import { renderToStaticMarkup } from 'react-dom/server';
 import LanguageToggle from '../components/LanguageToggle/LanguageToggle';
 import { Paper } from '@material-ui/core';
+import { loadNotes } from '../requests/notes.requests';
+import { loadBscNotesAction } from '../actions/note.actions';
 
 export interface IProps extends LocalizeContextProps {}
 
 const App = (props: IProps) => {
   const notes = useSelector(getNotes);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const initializeNotes = async () => {
+      await loadNotes()
+        .then(response => {
+          dispatch(loadBscNotesAction(response.data as INote[]));
+        })
+        .catch((err: Error) => {
+          console.error(err);
+        });
+    };
+    initializeNotes();
+  }, []);
 
   useEffect(() => {
     props.initialize({
@@ -29,16 +45,15 @@ const App = (props: IProps) => {
   }, []);
 
   return (
-
-      <div className="BSC-content">
-          <Paper className="BSC-header">
-              <LanguageToggle />
-          </Paper>
-        {notes.map((note: INote, index: number) => {
-          return <BSCNote note={note} index={index} />;
-        })}
-        <BSCCreateNote />
-      </div>
+    <div className="BSC-content">
+      <Paper className="BSC-header">
+        <LanguageToggle />
+      </Paper>
+      {notes.map((note: INote, index: number) => {
+        return <BSCNote note={note} index={index} />;
+      })}
+      <BSCCreateNote />
+    </div>
   );
 };
 

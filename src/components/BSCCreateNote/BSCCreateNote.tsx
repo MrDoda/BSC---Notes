@@ -9,7 +9,7 @@ const BSCCreateNote: React.FC = () => {
   const dispatch = useDispatch();
 
   const onClick = () => {
-    dispatch(createBscNoteAction);
+    dispatch(createBscNoteAction());
   };
 
   return (

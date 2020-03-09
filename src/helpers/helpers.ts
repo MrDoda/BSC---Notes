@@ -1,8 +1,12 @@
-//This would normally be done on the backend...
-import { INote } from '../types/common.type';
 import * as R from 'ramda';
+import store from '../store';
 
-export const createId = (notes: INote[]) => {
+//This would normally be done on the backend...
+export const createId = () => {
+  const notes = store.getState().notes;
   const sortedNotes = R.sortBy(R.prop('id'), notes);
+  if (notes.length < 1) {
+    return 1;
+  }
   return sortedNotes[notes.length - 1].id + 1;
 };
