@@ -5,7 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import './BSCNote.scss';
-import { deleteBscNoteAction } from '../../actions/note.actions';
+import { deleteBscNoteAction, setBscNoteAction } from '../../actions/note.actions';
 import { useDispatch } from 'react-redux';
 import { Translate } from 'react-localize-redux';
 import { InputBase, TextField } from '@material-ui/core';
@@ -22,13 +22,26 @@ const BSCNote: React.FC<IProps> = ({ note, index }) => {
     dispatch(deleteBscNoteAction(index));
   };
 
-  const onNoteChange = (propertyName: string) => (e:any) => {};
+  const onNoteChange = (propertyName: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(
+      setBscNoteAction({
+        ...note,
+        [propertyName]: e.target.value,
+      })
+    );
+  };
 
   return (
     <Card className="BSCNote">
       <CardContent>
-        <TextField onChange={onNoteChange('headline')} role="headline" className="headline-input" />
+        <TextField
+          value={note.headline}
+          onChange={onNoteChange('headline')}
+          role="headline"
+          className="headline-input"
+        />
         <InputBase
+          value={note.content}
           onChange={onNoteChange('content')}
           role="content"
           className="content-input"

@@ -2,13 +2,12 @@ import { INote } from '../types/common.type';
 import { IGlobalState } from '../store';
 import { INoteAction } from '../actions/note.actions';
 import * as R from 'ramda';
+import { createId } from '../helpers/helpers';
 
 export const NOTE_CREATE: string = 'NOTE_CREATE';
 export const NOTE_DELETE: string = 'NOTE_DELETE';
 export const NOTE_UPDATE: string = 'NOTE_UPDATE';
 export const NOTE_GET_NOTES: string = 'NOTE_GET_NOTES';
-
-export type INotesState = INote[];
 
 const initialState: INote[] = [
   {
@@ -36,7 +35,10 @@ const initialState: INote[] = [
   },
 ];
 
-const notes = (state: INotesState = initialState, action: INoteAction) => {
+// Notice: I do not usually use Lodash or Ramda (unless its wanted)...
+// I am fully aware that this is not readable for all other programmers not familiar with Ramda...
+// This is just me playing around with Ramda to make the most out of this project and my time.
+const notes = (state: INote[] = initialState, action: INoteAction) => {
   switch (action.type) {
     case NOTE_CREATE:
       return R.append(
@@ -53,8 +55,7 @@ const notes = (state: INotesState = initialState, action: INoteAction) => {
 
     case NOTE_UPDATE: {
       const noteToBeUpdated: INote = action.value as INote;
-      const foundNote = R.find(R.propEq('id', noteToBeUpdated));
-      return state;
+      return R.map(R.when(R.propEq('id', noteToBeUpdated.id), () => noteToBeUpdated))(state);
     }
 
     case NOTE_GET_NOTES:
@@ -67,12 +68,6 @@ const notes = (state: INotesState = initialState, action: INoteAction) => {
 
 export const getNotes = (store: IGlobalState) => {
   return store.notes;
-};
-
-//This would normally be done on the backend...
-export const createId = (notes: INote[]) => {
-  const sortedNotes = R.sortBy(R.prop('id'), notes);
-  return sortedNotes[notes.length - 1].id + 1;
 };
 
 export default notes;
