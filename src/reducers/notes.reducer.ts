@@ -9,31 +9,7 @@ export const NOTE_DELETE: string = 'NOTE_DELETE';
 export const NOTE_UPDATE: string = 'NOTE_UPDATE';
 export const NOTE_GET_NOTES: string = 'NOTE_GET_NOTES';
 
-const initialState: INote[] = [
-  {
-    id: 7,
-    headline: 'Note headline example',
-    content:
-      'Lorem Ipsum is simply dummy text of the ' +
-      "printing and typesetting industry. Lorem Ipsum has been the industry's ",
-  },
-  {
-    id: 4,
-    headline: 'Lorem',
-    content: 'ce the 1500s, when an unknown printer took a galley of type and scrambled it to ',
-  },
-  {
-    id: 3,
-    headline: 'My and ony',
-    content:
-      "m is that it has a more-or-less normal distribution of letters, as opposed to using 'Co",
-  },
-  {
-    id: 1,
-    headline: 'passage',
-    content: "u are going to use a passage of Lorem Ipsum, you need to be sure there isn't",
-  },
-];
+const initialState: INote[] = [];
 
 // Notice: I do not usually use Lodash or Ramda (unless its wanted)...
 // I am fully aware that this is not readable for all other programmers not familiar with Ramda...
