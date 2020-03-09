@@ -2,7 +2,7 @@ This project was made with fun.
 
 ## To Run this Project:
 
-Install npm
+Install node packages
 
 ### `npm install`
 
