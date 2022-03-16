@@ -1,22 +1,23 @@
-import React from 'react';
-import './App.scss';
-import { useSelector } from 'react-redux';
-import { getNotes } from '../reducers/notes.reducer';
-import { INote } from '../types/common.type';
-import BSCNote from '../components/BSCNote/BSCNote';
-import BSCCreateNote from '../components/BSCCreateNote/BSCCreateNote';
-import { LocalizeContextProps, withLocalize } from 'react-localize-redux';
-import LanguageToggle from '../components/LanguageToggle/LanguageToggle';
-import { Paper } from '@material-ui/core';
-import { useInitializeBscNotes, useTranslationInit } from '../hooks/hooks';
+import React from 'react'
+import './App.scss'
+import { useSelector } from 'react-redux'
+import { getNotes } from '../reducers/notes.reducer'
+import { INote } from '../types/common.type'
+import { BSCNote } from '../components/BSCNote/BSCNote'
+import { BSCCreateNote } from '../components/BSCCreateNote/BSCCreateNote'
+import { LocalizeContextProps, withLocalize } from 'react-localize-redux'
+import LanguageToggle from '../components/LanguageToggle/LanguageToggle'
+import { Paper } from '@material-ui/core'
+import { useInitializeBscNotes } from '../hooks/useInitializeBscNotes'
+import { useTranslationInit } from '../hooks/useTranslationInit'
 
 export interface IProps extends LocalizeContextProps {}
 
-const App = (props: IProps) => {
-  const notes = useSelector(getNotes);
+const App: React.FC<IProps> = ({ initialize }) => {
+  const notes = useSelector(getNotes)
 
-  useInitializeBscNotes();
-  useTranslationInit(props.initialize);
+  useInitializeBscNotes()
+  useTranslationInit(initialize)
 
   return (
     <div className="BSC-content">
@@ -24,11 +25,11 @@ const App = (props: IProps) => {
         <LanguageToggle />
       </Paper>
       {notes.map((note: INote, index: number) => {
-        return <BSCNote note={note} index={index} />;
+        return <BSCNote note={note} index={index} />
       })}
       <BSCCreateNote />
     </div>
-  );
-};
+  )
+}
 
-export default withLocalize(App);
+export default withLocalize(App)

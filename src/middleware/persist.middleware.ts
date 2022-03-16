@@ -2,7 +2,7 @@ import { Dispatch, Middleware } from 'redux';
 import { INoteAction } from '../actions/note.actions';
 import { INote } from '../types/common.type';
 import { NOTE_CREATE, NOTE_DELETE, NOTE_UPDATE } from '../reducers/notes.reducer';
-import { deleteNote, postNote, putNote } from '../requests/notes.requests';
+import { deleteNote, postNote, putNote } from '../api/notes.requests';
 import { debounce } from 'lodash';
 
 const debouncedUpdateNote = debounce((note: INote) => {
